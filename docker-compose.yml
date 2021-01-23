@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  sshd:
+    build: .
+    ports:
+      - '2222:22'
+    # stdin_open: true
+    # tty: true
