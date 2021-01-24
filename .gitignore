@@ -28,3 +28,6 @@
 /.bundle/
 /vendor/bundle
 /lib/bundler/man/
+
+# ssh
+.ssh/

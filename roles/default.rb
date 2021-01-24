@@ -22,3 +22,11 @@ package 'mysql-community-devel'
 
 # nginx
 include_recipe "../cookbooks/nginx"
+
+# app user
+node.reverse_merge!(
+  users: {
+    app_user_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIARwuGx+Vqin2wGjGQVEqcwzDLa4RxsU8xQ4i/YSBT+u app"
+  }
+)
+include_recipe "../cookbooks/users"
