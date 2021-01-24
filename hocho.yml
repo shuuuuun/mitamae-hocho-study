@@ -1,0 +1,31 @@
+# inventory_providers:
+#   file:
+#     path: './hosts'
+
+property_providers:
+  # ## Provide default values to host properties (reverse_merge).
+  # - add_default:
+  #     properties:
+  #       blah: blahblah
+  #       # preferred_driver: mitamae
+  #       attributes:
+  #         node_attributes_goes_here: hello
+
+  # ## Run ruby script to mutate host properties
+  # - ruby_script:
+  #     name: name-for-your-convenience # optional
+  #     script: 'host.properties[:hello] = Time.now.xmlschema'
+  #   ## or
+  #   # file: path/to/script.rb
+
+  - add_default:
+      properties:
+        preferred_driver: mitamae
+
+driver_options:
+  mitamae:
+    mitamae_path: /usr/local/bin/mitamae
+    mitamae_options: ['--log-level', 'debug']
+    mitamae_prepare_script: |
+      wget -O /usr/local/bin/mitamae https://github.com/itamae-kitchen/mitamae/releases/download/v1.11.7/mitamae-x86_64-linux &&
+      chmod +x /usr/local/bin/mitamae
