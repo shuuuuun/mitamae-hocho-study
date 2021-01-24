@@ -42,6 +42,12 @@ vagrant/ssh:
 vagrant/ssh-config:
 	vagrant ssh-config
 
+vagrant/destroy:
+	vagrant destroy
+
+vagrant/refresh-knownhosts:
+	ssh-keygen -R '[127.0.0.1]:2222'
+
 docker/up:
 	docker-compose up
 
