@@ -1,7 +1,7 @@
 MITAMAE_VERSION := 1.11.7
 
 # SUDO_PASSWORD := pass
-
+# SUDO_PASSWORD := ''
 # export SUDO_PASSWORD
 
 .PHONY: setup
@@ -30,6 +30,18 @@ rsync:
 # ssh-keygen -t rsa -b 2048 -C "root" -f .ssh/id_rsa
 # ssh-keygen -t ed25519 -C "root" -f .ssh/id_ed25519
 
+vagrant/up:
+	vagrant up
+
+vagrant/status:
+	vagrant status
+
+vagrant/ssh:
+	vagrant ssh
+
+vagrant/ssh-config:
+	vagrant ssh-config
+
 docker/up:
 	docker-compose up
 
@@ -39,8 +51,11 @@ docker/ssh:
 hocho/list:
 	bundle exec hocho list
 
-hocho/show:
-	bundle exec hocho show docker-ubuntu
+hocho/show/%:
+	bundle exec hocho show $*
 
-hocho/apply/dry-run:
-	bundle exec hocho apply --dry-run docker-ubuntu
+hocho/apply/%/dry-run:
+	bundle exec hocho apply --dry-run $*
+
+hocho/apply/%:
+	bundle exec hocho apply $*

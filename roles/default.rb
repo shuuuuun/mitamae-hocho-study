@@ -1,2 +1,5 @@
 execute 'echo hello world'
-execute 'mitamae --version'
+execute 'echo $PATH'
+# execute 'export PATH=$PATH:/usr/local/bin'
+# execute 'mitamae version'
+execute '/usr/local/bin/mitamae version'
