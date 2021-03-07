@@ -1,5 +1,6 @@
 execute 'echo hello world'
 execute '/usr/local/bin/mitamae version'
+execute 'yum update -y systemd'
 
 # options
 node.reverse_merge!(
