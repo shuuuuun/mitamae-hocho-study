@@ -6,13 +6,23 @@ package "nginx" do
   action :install
 end
 
-# template "/etc/nginx/nginx.conf" do
-#   source node[:nginx][:file]
-#   owner "root"
-#   group "root"
-#   mode "644"
-#   # notifies :run, "execute[restart nginx]"
-# end
+file "/etc/nginx/conf.d/default.conf" do
+  action :delete
+end
+
+template "/etc/nginx/conf.d/app.conf" do
+  source "templates/app.conf.erb"
+  owner "root"
+  group "root"
+  mode "644"
+  # notifies :run, "execute[restart nginx]"
+  variables(
+    # app_sock: "unix:///var/run/puma/my_app.sock"
+    app_sock: "unix:///home/app/capistrano-study/shared/tmp/sockets/puma.sock",
+    # root: "/var/app/current/public"
+    root: "/home/app/capistrano-study/current/public"
+  )
+end
 
 # directory "/var/log/nginx" do
 #   owner node[:user][:name]
