@@ -2,9 +2,12 @@ group "app" do
   gid 505
 end
 
-include_recipe "./app"
+file "/etc/sudoers.d/app" do
+  owner "root"
+  group "root"
+  content <<-EOS
+    %app ALL=NOPASSWD: /bin/systemctl
+  EOS
+end
 
-# group "wheel" do
-#   # members ["app"]
-#   user "app"
-# end
+include_recipe "./app"
