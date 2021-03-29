@@ -36,10 +36,8 @@ template "/etc/nginx/conf.d/app.conf" do
   mode "644"
   # notifies :run, "execute[restart nginx]"
   variables(
-    # app_sock: "unix:///var/run/puma/my_app.sock"
-    app_sock: "unix:///home/app/capistrano-study/shared/tmp/sockets/puma.sock",
-    # root: "/var/app/current/public"
-    root: "/home/app/capistrano-study/current/public"
+    app_sock: node[:nginx][:app_sock] || "unix:///var/run/puma/app.sock",
+    root: node[:nginx][:root] || "/var/app/current/public"
   )
 end
 
