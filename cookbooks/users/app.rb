@@ -17,7 +17,7 @@ file "/home/#{username}/.ssh/authorized_keys" do
 end
 
 # for deploy
-directory "/home/#{username}" do
+directory "/var/app" do
   mode "0755"
   owner username
 end
