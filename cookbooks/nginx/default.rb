@@ -1,5 +1,24 @@
-package 'http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm' do
-  not_if 'rpm -q nginx'
+if node[:platform] == 'centos' || node[:platform] == 'redhat'
+  execute 'yum -y install yum-utils'
+  file "/etc/yum.repos.d/nginx.repo" do
+    content \
+      '[nginx-stable]' "\n" \
+      'name=nginx stable repo' "\n" \
+      'baseurl=http://nginx.org/packages/centos/$releasever/$basearch/' "\n" \
+      'gpgcheck=1' "\n" \
+      'enabled=1' "\n" \
+      'gpgkey=https://nginx.org/keys/nginx_signing.key' "\n" \
+      'module_hotfixes=true'
+  end
+
+  case node[:platform_version].to_i
+  when 7
+    package 'http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm' do
+      not_if 'rpm -q nginx'
+    end
+  when 8
+    execute 'dnf -y module disable nginx' # disable default module
+  end
 end
 
 package "nginx" do
