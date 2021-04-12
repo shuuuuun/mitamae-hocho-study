@@ -8,7 +8,7 @@ if node[:platform] == 'centos' || node[:platform] == 'redhat'
       'gpgcheck=1' "\n" \
       'enabled=1' "\n" \
       'gpgkey=https://nginx.org/keys/nginx_signing.key' "\n" \
-      'module_hotfixes=true'
+      'module_hotfixes=true' "\n"
   end
 
   case node[:platform_version].to_i
@@ -18,6 +18,11 @@ if node[:platform] == 'centos' || node[:platform] == 'redhat'
     end
   when 8
     execute 'dnf -y module disable nginx' # disable default module
+  end
+elsif node[:platform] == 'amazon'
+  case node[:platform_version].to_i
+  when 2
+    execute 'amazon-linux-extras install nginx1'
   end
 end
 
