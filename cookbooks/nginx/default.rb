@@ -35,17 +35,12 @@ template "/etc/nginx/conf.d/app.conf" do
   group "root"
   mode "644"
   # notifies :run, "execute[restart nginx]"
+  notifies :restart, "service[nginx]"
   variables(
     app_sock: node[:nginx][:app_sock] || "unix:///var/run/puma/app.sock",
     root: node[:nginx][:root] || "/var/app/current/public"
   )
 end
-
-# directory "/var/log/nginx" do
-#   owner node[:user][:name]
-#   group node[:user][:name]
-#   mode "755"
-# end
 
 # execute "restart nginx"  do
 #   command "/etc/init.d/nginx restart"
