@@ -17,5 +17,10 @@ elsif node[:platform] == 'amazon'
   end
 end
 
-package 'mysql-community-server'
-package 'mysql-community-devel'
+if %w[centos redhat amazon].include?(node[:platform])
+  package 'mysql-community-server'
+  package 'mysql-community-devel'
+elsif %w[ubuntu].include?(node[:platform])
+  package 'mysql-server'
+  package 'mysql-client'
+end

@@ -34,6 +34,10 @@ file "/etc/nginx/conf.d/default.conf" do
   action :delete
 end
 
+file "/etc/nginx/sites-enabled/default" do
+  action :delete
+end
+
 template "/etc/nginx/conf.d/app.conf" do
   source "templates/app.conf.erb"
   owner "root"

@@ -27,6 +27,7 @@ driver_options:
     mitamae_path: /usr/local/bin/mitamae
     mitamae_options: ['--log-level', 'debug']
     mitamae_prepare_script: |
-      yum install -y wget &&
-      wget -O /usr/local/bin/mitamae https://github.com/itamae-kitchen/mitamae/releases/download/v1.11.7/mitamae-x86_64-linux &&
+      # yum install -y wget
+      apt-get install -y wget &&
+      wget -O /usr/local/bin/mitamae https://github.com/itamae-kitchen/mitamae/releases/download/v1.12.3/mitamae-x86_64-linux &&
       chmod +x /usr/local/bin/mitamae

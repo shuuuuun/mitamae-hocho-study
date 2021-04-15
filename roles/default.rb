@@ -22,7 +22,7 @@ node.reverse_merge!(
 )
 
 # recipe
-include_recipe "selinux::disabled"
+include_recipe "selinux::disabled" if %w[centos redhat amazon].include?(node[:platform])
 include_recipe "../cookbooks/rbenv"
 include_recipe "../cookbooks/mysql"
 include_recipe "../cookbooks/nginx"
