@@ -12,10 +12,10 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  # config.vm.box = "centos/7"
+  config.vm.box = "centos/7"
   # config.vm.box = "centos/stream8"
   # config.vm.box = "bento/amazonlinux-2"
-  config.vm.box = "ubuntu/focal64"
+  # config.vm.box = "ubuntu/focal64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
