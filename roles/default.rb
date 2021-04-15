@@ -13,8 +13,8 @@ node.reverse_merge!(
     ],
   },
   nginx: {
-    app_sock: "unix:///var/app/capistrano-study/shared/tmp/sockets/puma.sock",
-    root: "/var/app/capistrano-study/current/public",
+    app_sock: "unix:///var/app/study-app/shared/tmp/sockets/puma.sock",
+    root: "/var/app/study-app/current/public",
   },
   users: {
     app_user_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIARwuGx+Vqin2wGjGQVEqcwzDLa4RxsU8xQ4i/YSBT+u app"
