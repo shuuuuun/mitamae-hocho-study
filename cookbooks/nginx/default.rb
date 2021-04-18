@@ -1,5 +1,6 @@
 if node[:platform] == 'centos' || node[:platform] == 'redhat'
-  execute 'yum -y install yum-utils'
+  package 'yum-utils'
+
   file "/etc/yum.repos.d/nginx.repo" do
     content \
       '[nginx-stable]' "\n" \
